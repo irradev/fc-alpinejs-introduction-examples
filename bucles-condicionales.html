@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJs - Bucles y condicionales</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #122835;
+            color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color:antiquewhite;
+            font-size: 20px;
+            &:visited {
+                color:antiquewhite; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+    <div style="display: flex; gap:16px; padding: 16px 8px; margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <a href="models.html">Models</a>
+        <a href="bucles-condicionales.html">Bucles y condicionales</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="metodos-magicos.html">Métodos mágicos</a>
+    </div>
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+
+
+
+    <div x-data="data()">
+        <ul>
+            
+            <h4>- - - Array - - -</h4>
+            <template x-for="product in products">
+                <li>
+                    <span x-text="product"></span>
+                </li>
+            </template>
+
+            <br/><br/>
+
+            <h4>- - - Array of Objects - - -</h4>
+            <template x-for="product in detailProducts">
+                <li>
+                    ID: <span x-text="product.id"></span>
+                    <br/>
+                    NAME: <span x-text="product.name"></span>
+                    <br/>
+                    STOCK: <span x-text="product.stock"></span>
+                    <template x-if="product.stock === 0">
+                        <span> ------ (Sin stock)</span>
+                    </template>
+                    <br/><br/>
+                </li>
+            </template>
+
+            <br/><br/>
+            
+            <h4>- - - Object values - - -</h4>
+            <template x-for="product in Object.values(detailProductsObj)">
+                <li>
+                    ID: <span x-text="product.id"></span>
+                    <br/>
+                    NAME: <span x-text="product.name"></span>
+                    <br/>
+                    STOCK: <span x-text="product.stock"></span>
+                    <template x-if="product.stock === 0">
+                        <span> ------ (Sin stock)</span>
+                    </template>
+                    <br/><br/>
+                </li>
+            </template>
+        </ul>
+    </div>
+
+    <script>
+        function data() {
+            return {
+                products: [
+                    'Pantalón',
+                    'Camisa',
+                    'Casaca',
+                    'Zapatilla'
+                ],
+                detailProducts: [
+                    { 
+                        id: 1,
+                        name: 'Camisa',
+                        stock: 10,
+                    },
+                    { 
+                        id: 2,
+                        name: 'Casaca',
+                        stock: 22,
+                    },
+                    { 
+                        id: 3,
+                        name: 'Casaca',
+                        stock: 0,
+                    },
+                    { 
+                        id: 4,
+                        name: 'Zapatilla',
+                        stock: 158,
+                    },
+                ],
+                detailProductsObj: {
+                    1: { 
+                        id: 1,
+                        name: 'Camisa',
+                        stock: 10,
+                    },
+                    2: { 
+                        id: 2,
+                        name: 'Casaca',
+                        stock: 0,
+                    },
+                    3: { 
+                        id: 3,
+                        name: 'Casaca',
+                        stock: 15,
+                    },
+                    4: { 
+                        id: 4,
+                        name: 'Zapatilla',
+                        stock: 158,
+                    },
+                },
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJs - Models</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #122835;
+            color: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            color:antiquewhite;
+            font-size: 20px;
+            &:visited {
+                color:antiquewhite; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+    <div style="display: flex; gap:16px; padding: 16px 8px; margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <a href="models.html">Models</a>
+        <a href="bucles-condicionales.html">Bucles y condicionales</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="metodos-magicos.html">Métodos mágicos</a>
+    </div>
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+
+
+
+    <div x-data="{inputSearch: null}">
+        <input name="search" type="text" x-model="inputSearch" />
+
+        <!-- <p x-text="inputSearch"></p> -->
+        <button @click="$refs.msg.innerText = inputSearch">Enviar</button>
+        <p x-ref="msg"></p>
+    </div>
+
+
+
+</body>
+</html>

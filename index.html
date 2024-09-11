@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJs</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #122835;
+            color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color:antiquewhite;
+            font-size: 20px;
+            &:visited {
+                color:antiquewhite; 
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+        .text-tomato {
+            color: tomato;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+    <div style="display: flex; gap:16px; padding: 16px 8px; margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <a href="models.html">Models</a>
+        <a href="bucles-condicionales.html">Bucles y condicionales</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="metodos-magicos.html">Métodos mágicos</a>
+    </div>
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+
+    <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+
+    <div x-data="data()" x-init="start()">
+        <span x-text="hola"></span>
+        <br/><br/>
+
+        <button x-bind:disabled="open" x-on:click="toggleMenu">Menu</button>
+
+        <nav x-show="open" x-on:click.away="close()">
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+            </ul>
+            
+            <!-- SINTAXIS CORTA -->
+            <p class="text-tomato hidden" :class="{'hidden': !open}">This text shows when open is true</p>
+            <button @click="confirmClose()">Cerrar menu</button>
+        </nav>
+
+    </div>
+
+    <script>
+        function data() {
+            return {
+                hola: 'nada',
+                open: null,
+                start() {
+                    this.open = false;
+                    this.hola = 'mundo';
+                },
+                toggleMenu(){
+                    this.open = !this.open;
+                },
+                close() {
+                    this.open = false;
+                },
+                confirmClose() {
+                    const isAccept = confirm('¿Cerrar el menu?');
+                    if (isAccept) this.close()
+                }
+            }
+        }
+    </script>
+</body>
+</html>

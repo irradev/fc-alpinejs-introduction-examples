@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJs - Eventos</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #122835;
+            color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color:antiquewhite;
+            font-size: 20px;
+            &:visited {
+                color:antiquewhite; 
+            }
+        }
+        .big-block {
+            background-color: rgb(54, 54, 54);
+            border-radius: 16px;
+            padding: 16px;
+
+            margin-top: 32px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+    <div style="display: flex; gap:16px; padding: 16px 8px; margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <a href="models.html">Models</a>
+        <a href="bucles-condicionales.html">Bucles y condicionales</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="metodos-magicos.html">Métodos mágicos</a>
+
+    </div>
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+
+    <div x-data="{mensaje: null}">
+        <form action="" @submit.prevent="console.log(mensaje)">
+            <label>Evento submit con prevent</label><br/>
+            <input type="text" x-model="mensaje" />
+
+            <button type="submit" @click.away="console.log('has hecho click fuera del botón')">
+                Enviar
+            </button>
+        </form>
+        <br/><br/>
+        
+        <label>Evento keydown</label><br/>
+        <input type="text" x-model="mensaje" @keydown="console.log(mensaje)"/>
+        <br/><br/>
+        
+        <label>Evento keydown para tecla enter</label><br/>
+        <input type="text" x-model="mensaje" @keydown.enter="console.log(mensaje)"/>
+        <br/><br/>
+        
+        <label>Evento keydown para tecla escape</label><br/>
+        <input type="text" x-model="mensaje" @keydown.escape="console.log(mensaje)"/>
+        <br/><br/>
+        
+        <label>Evento keydown para tecla arrow-up</label><br/>
+        <input type="text" x-model="mensaje" @keydown.arrow-up="console.log(mensaje)"/>
+        <br/><br/>
+        
+        <label>Evento keydown para tecla ctrl+a</label><br/>
+        <input type="text" x-model="mensaje" @keydown.ctrl.a="console.log(mensaje)"/>
+    </div>
+
+    <br/>
+    <div 
+        class="big-block" 
+        x-data="{open: true}" 
+        @resize.window="open = window.outerWidth > 768"
+    >
+        <span>Nota: para este caso redimensionar toda la ventana del navegador</span>
+        <p x-show="open">Este mensaje solo se mostrará desde una pantalla grande</p>
+    </div>
+</body>
+</html>

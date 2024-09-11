@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJs - Métodos mágicos</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #122835;
+            color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color:antiquewhite;
+            font-size: 20px;
+            &:visited {
+                color:antiquewhite; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+    <div style="display: flex; gap:16px; padding: 16px 8px; margin-bottom: 24px;">
+        <a href="index.html">Home</a>
+        <a href="models.html">Models</a>
+        <a href="bucles-condicionales.html">Bucles y condicionales</a>
+        <a href="eventos.html">Eventos</a>
+        <a href="metodos-magicos.html">Métodos mágicos</a>
+
+    </div>
+    <!-- - - - - - - - - - - - MAIN MENU - - - - - - - - - - - -->
+
+    <div x-data>
+
+        <button @click="$el.innerHTML='Texto cambiado'">
+            Hazme click
+        </button>
+        
+        <button @click="$refs.texto.innerHTML='Texto cambiado'">
+            Reemplazar texto
+        </button>
+
+        <p x-ref="texto">Un texto</p>
+
+        <br/><br/>
+        <label>Capturar evento @input - $event.target.value</label><br/>
+        <input type="text" @input="console.log($event.target.value)" />
+
+    </div>
+    <p>--------------------------------</p>
+    <br/>
+    <h2>Comunicación entre componentes mediante eventos</h2>
+
+    <div x-data="{mensaje: null}" style="display: inline-block; padding: 8px; border: 1px solid lightcoral;">
+        <small>x-data componente 1</small>
+        <input type="text" x-model="mensaje" @input="$dispatch('custom-event', mensaje)"/>
+    </div>
+    <br/><br/>
+    <div 
+        x-data="{mensaje: null}" 
+        @custom-event.window="mensaje = $event.detail"
+        style="display: inline-block; padding: 8px; border: 1px solid greenyellow;"
+    >
+        <small>x-data componente 2</small>
+        <input type="text" x-model="mensaje" />
+    </div>
+</body>
+</html>
